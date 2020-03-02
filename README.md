@@ -125,7 +125,7 @@ Provide username and password of a User to create an Authetication Token.
 
 **Condition** : If the User has an inaccurate username or password.
 
-**Code** : `400 BAD REQUEST`
+**Code** : `401 UNAUTHORIZED`
 
 **Content example**
 
