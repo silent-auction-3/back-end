@@ -6,8 +6,7 @@
 
 ## Create User's Account
 
-Create an Account for the authenticated User if an Account for that User does
-not already exist. Each User can only have one Account.
+Create a User if that User does not already exist.
 
 **URL** : `/api/auth/register`
 
@@ -19,7 +18,7 @@ not already exist. Each User can only have one Account.
 
 **Data constraints**
 
-Provide name of Account to be created.
+Provide username and password of User to be created.
 
 ```json
 {
@@ -39,7 +38,7 @@ Provide name of Account to be created.
 
 ## Success Response
 
-**Condition** : If everything is OK and an Account didn't exist for this User.
+**Condition** : If everything is OK and the User did not exist.
 
 **Code** : `201 CREATED`
 
@@ -53,7 +52,7 @@ Provide name of Account to be created.
 
 ## Error Responses
 
-**Condition** : If Account already exists for User.
+**Condition** : If User already exists.
 
 **Code** : `400 BAD REQUEST`
 
@@ -61,7 +60,7 @@ Provide name of Account to be created.
 
 ```json
 {
-    "errorMessage": "This account already exists"
+    "errorMessage": "This user already exists"
 }
 ```
 ### Or
@@ -79,10 +78,9 @@ Provide name of Account to be created.
 ```
 ## Login User
 
-Create an Account for the authenticated User if an Account for that User does
-not already exist. Each User can only have one Account.
+Login a User to create an Authentication Token if that User exists and is authenticated.
 
-**URL** : `/api/auth/register`
+**URL** : `/api/auth/login`
 
 **Method** : `POST`
 
@@ -92,7 +90,7 @@ not already exist. Each User can only have one Account.
 
 **Data constraints**
 
-Provide name of Account to be created.
+Provide username and password of a User to create an Authetication Token.
 
 ```json
 {
@@ -112,21 +110,21 @@ Provide name of Account to be created.
 
 ## Success Response
 
-**Condition** : If everything is OK and an Account didn't exist for this User.
+**Condition** : If everything is OK and the username and password where authenticated.
 
-**Code** : `201 CREATED`
+**Code** : `200 OK`
 
 **Content example**
 
 ```json
 {
-    "id": 123,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtRsrrA3uyU"
 }
 ```
 
 ## Error Responses
 
-**Condition** : If Account already exists for User.
+**Condition** : If the User has an inaccurate username or password.
 
 **Code** : `400 BAD REQUEST`
 
@@ -134,7 +132,7 @@ Provide name of Account to be created.
 
 ```json
 {
-    "errorMessage": "This account already exists"
+    "errorMessage": "The username and password are not accurate"
 }
 ```
 ### Or
@@ -144,7 +142,6 @@ Provide name of Account to be created.
 **Code** : `400 BAD REQUEST`
 
 **Content example**
-<a name="#register"/>
 ```json
 {
     "errorMessage": "Missing required field: [fieldName]"
