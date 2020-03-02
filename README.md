@@ -1,3 +1,5 @@
+### Base URL: https://silent-auction-backend.herokuapp.com/
+
 # Authentication
 
 #### Table of Contents  
