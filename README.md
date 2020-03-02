@@ -36,7 +36,7 @@ Provide username and password of User to be created.
 }
 ```
 
-## Success Response
+### Success Response
 
 **Condition** : If everything is OK and the User did not exist.
 
@@ -50,7 +50,7 @@ Provide username and password of User to be created.
 }
 ```
 
-## Error Responses
+### Error Responses
 
 **Condition** : If User already exists.
 
@@ -63,7 +63,7 @@ Provide username and password of User to be created.
     "errorMessage": "This user already exists"
 }
 ```
-### Or
+###### Or
 
 **Condition** : If fields are missed.
 
@@ -108,7 +108,7 @@ Provide username and password of a User to create an Authetication Token.
 }
 ```
 
-## Success Response
+### Success Response
 
 **Condition** : If everything is OK and the username and password where authenticated.
 
@@ -122,7 +122,7 @@ Provide username and password of a User to create an Authetication Token.
 }
 ```
 
-## Error Responses
+### Error Responses
 
 **Condition** : If the User has an inaccurate username or password.
 
@@ -135,7 +135,7 @@ Provide username and password of a User to create an Authetication Token.
     "errorMessage": "The username and password are not accurate"
 }
 ```
-### Or
+###### Or
 
 **Condition** : If fields are missed.
 
