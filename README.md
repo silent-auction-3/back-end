@@ -63,14 +63,13 @@ Provide username and password of User to be created.
     "errorMessage": "This user already exists"
 }
 ```
-###### Or
+###### *Or*
 
 **Condition** : If fields are missed.
 
 **Code** : `400 BAD REQUEST`
 
 **Content example**
-<a name="#register"/>
 ```json
 {
     "errorMessage": "Missing required field: [fieldName]"
@@ -135,7 +134,7 @@ Provide username and password of a User to create an Authetication Token.
     "errorMessage": "The username and password are not accurate"
 }
 ```
-###### Or
+###### *Or*
 
 **Condition** : If fields are missed.
 
