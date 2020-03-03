@@ -5,6 +5,8 @@ const cors = require("cors");
 const verifyUser = require("./verifyUser");
 const usersRouter = require("../users/users-router");
 const authRouter = require("../auth/auth-router");
+const auctionsRouter = require("../auctions/auctions-router");
+const bidsRouter = require("../bids/bids-router");
 
 
 server.use(express.json());
@@ -18,6 +20,8 @@ server.get("/", (req, res) => {
 // Private Endpoints
 
 server.use("/api/users", verifyUser, usersRouter);
+server.use("/api/auctions", verifyUser, auctionsRouter);
+server.use("/api/bids", verifyUser, bidsRouter);
 
 // Public Endpoints
 

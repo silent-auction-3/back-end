@@ -15,6 +15,7 @@ authRouter.post("/register", async (req, res) => {
   }
   else {
     try {
+      userInfo.role_id = 1; // normal user
       userInfo.password = bcryptjs.hashSync(userInfo.password, 8);
       
       res.status(201).json({ id: (await usersModel.add(userInfo))[0] });
@@ -45,7 +46,7 @@ authRouter.post("/login", async (req, res) => {
 
       if (userInDb && bcryptjs.compareSync(userInfo.password, userInDb.password)) {
         res.status(200).json({
-          token: await generateToken(userInDb)
+          token: generateToken(userInDb)
         });
       }
       else {
@@ -58,14 +59,11 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 
-async function generateToken(user) {
-  const payload = {
-    subject: user.id,
-    username: user.username
-  };
+function generateToken(user) {
+  const payload = user;
   const secret = require("./secrets").jwtSecret;
   const options = {
-    expiresIn: await isAdmin(user) ? "1y": "30m"
+    expiresIn: isAdmin(user) ? "1y": "30m"
   };
 
   return jwt.sign(payload, secret, options);

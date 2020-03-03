@@ -1,7 +1,8 @@
 const usersRouter = require("express").Router();
 const usersModel = require("./users-model");
+const { requiresRole } = require("../helpers/roles");
 
-usersRouter.get("/", async (req, res) => {
+usersRouter.get("/", requiresRole("admin"), async (req, res) => {
   const allUsers = await usersModel.getAll();
   const cleanedUpAllUsers = allUsers.map(u => {
     return {
@@ -12,6 +13,12 @@ usersRouter.get("/", async (req, res) => {
   });
   
   res.status(200).json(cleanedUpAllUsers);
+});
+
+usersRouter.get("/auctions", async (req, res) => {
+  const usersAuctions = await usersModel.getAuctionsBySellerId(req.user.id);
+  
+  res.status(200).json(usersAuctions);
 });
 
 module.exports = usersRouter;

@@ -10,7 +10,7 @@ function verifyUser(req, res, next) {
         res.status(401).json("Invalid Credentials");
       }
       else {
-        req.decodedToken = decodedToken;
+        req.user = decodedToken;
         next();
       }
     });

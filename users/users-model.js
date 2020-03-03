@@ -17,6 +17,12 @@ function getByUsername(username) {
     .where("users.username", username).first();
 }
 
+function getAuctionsBySellerId(sellerId) {
+  return DB("auctions")
+    .join("auction_categories", "auction_categories.id", "auctions.category_id")
+    .where("auctions.seller_id", sellerId);
+}
+
 function add(userInfo) {
   return DB("users").insert(userInfo).returning("id");
 }
@@ -25,5 +31,6 @@ module.exports = {
   getAll,
   getById,
   getByUsername,
+  getAuctionsBySellerId,
   add
 };
