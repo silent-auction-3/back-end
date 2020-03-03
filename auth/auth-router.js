@@ -2,6 +2,7 @@ const authRouter = require("express").Router();
 const usersModel = require("../users/users-model");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { isAdmin } = require("../helpers/roles");
 
 authRouter.post("/register", async (req, res) => {
   const userInfo = req.body;
@@ -44,7 +45,7 @@ authRouter.post("/login", async (req, res) => {
 
       if (userInDb && bcryptjs.compareSync(userInfo.password, userInDb.password)) {
         res.status(200).json({
-          token: generateToken(userInDb)
+          token: await generateToken(userInDb)
         });
       }
       else {
@@ -57,14 +58,14 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 
-function generateToken(user) {
+async function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username
   };
   const secret = require("./secrets").jwtSecret;
   const options = {
-    expiresIn: "30m"
+    expiresIn: await isAdmin(user) ? "1y": "30m"
   };
 
   return jwt.sign(payload, secret, options);

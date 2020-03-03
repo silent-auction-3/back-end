@@ -1,15 +1,20 @@
 const DB = require("../database/connection");
 
 function getAll() {
-  return DB("users");
+  return DB("users")
+    .join("roles", "users.role_id", "roles.id");
 }
 
 function getById(id) {
-  return DB("users").where({ id }).first();
+  return DB("users")
+    .join("roles", "users.role_id", "roles.id")
+    .where("users.id", id).first();
 }
 
 function getByUsername(username) {
-  return DB("users").where({ username }).first();
+  return DB("users")
+    .join("roles", "users.role_id", "roles.id")
+    .where("users.username", username).first();
 }
 
 function add(userInfo) {

@@ -6,7 +6,8 @@ usersRouter.get("/", async (req, res) => {
   const cleanedUpAllUsers = allUsers.map(u => {
     return {
       id: u.id,
-      username: u.username
+      username: u.username,
+      role_name: u.role_name
     };
   });
   

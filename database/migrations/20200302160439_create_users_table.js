@@ -9,6 +9,13 @@ exports.up = function(knex) {
     table
       .string("password", 64)
       .notNullable();
+    table.integer("role_id")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("roles")
+      .onUpdate("CASCADE")
+      .onDelete("RESTRICT");
   });
 };
 
