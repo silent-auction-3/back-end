@@ -6,6 +6,7 @@ const verifyUser = require("./verifyUser");
 const usersRouter = require("../users/users-router");
 const authRouter = require("../auth/auth-router");
 const auctionsRouter = require("../auctions/auctions-router");
+const categoriesRouter = require("../categories/categories-router");
 const bidsRouter = require("../bids/bids-router");
 
 
@@ -26,5 +27,6 @@ server.use("/api/bids", verifyUser, bidsRouter);
 // Public Endpoints
 
 server.use("/api/auth", authRouter);
+server.use("/api/categories", categoriesRouter);
 
 module.exports = server;

@@ -5,6 +5,7 @@
 #### Table of Contents  
 - [Create Users's Account](#create-users-account)
 - [Login User](#login-user)
+- [List Auction Categories](#list-auction-categories)
 
 ## Create User's Account
 
@@ -148,3 +149,40 @@ Provide username and password of a User to create an Authetication Token.
     "errorMessage": "Missing required field: [fieldName]"
 }
 ```
+## List Auction Categories
+
+Retrieve an array of Auction Categories.
+
+**URL** : `/api/categories`
+
+**Method** : `GET`
+
+**Auth required** : No
+
+**Permissions required** : None
+
+**Data constraints** : None
+
+### Success Response
+
+**Condition** : If everything is OK.
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+[
+  {
+    "id": 1,
+    "category_name": "Fashion",
+    "category_description": "Clothing, Shoes, Jewelry, Watches"
+  },
+  {
+    "id": 2,
+    "category_name": "Books, Movies & Music",
+    "category_description": "Books, Movies, Music, Musical Instuments, "
+  }
+]
+```
+
