@@ -8,6 +8,7 @@ const authRouter = require("../auth/auth-router");
 const auctionsRouter = require("../auctions/auctions-router");
 const categoriesRouter = require("../categories/categories-router");
 const bidsRouter = require("../bids/bids-router");
+const publicRouter = require("./public-router");
 
 
 server.use(express.json());
@@ -28,5 +29,6 @@ server.use("/api/bids", verifyUser, bidsRouter);
 
 server.use("/api/auth", authRouter);
 server.use("/api/categories", categoriesRouter);
+server.use("/api/public", publicRouter);
 
 module.exports = server;
