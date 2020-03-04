@@ -2,7 +2,7 @@ const authRouter = require("express").Router();
 const usersModel = require("../users/users-model");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { isAdmin } = require("../helpers/roles");
+const { isUserAdminRole } = require("../helpers/roles");
 
 authRouter.post("/register", async (req, res) => {
   const userInfo = req.body;
@@ -63,7 +63,7 @@ function generateToken(user) {
   const payload = user;
   const secret = require("./secrets").jwtSecret;
   const options = {
-    expiresIn: isAdmin(user) ? "1y": "30m"
+    expiresIn: isUserAdminRole(user) ? "1y": "8h"
   };
 
   return jwt.sign(payload, secret, options);

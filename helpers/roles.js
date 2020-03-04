@@ -1,4 +1,4 @@
-function isAdmin(user) {
+function isUserAdminRole(user) {
   return user.role_name === "admin";
 }
 
@@ -14,6 +14,6 @@ function requiresRole(roleName) {
 }
 
 module.exports = {
-  isAdmin,
+  isUserAdminRole,
   requiresRole
 }

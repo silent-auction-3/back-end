@@ -1,4 +1,5 @@
 const DB = require("../database/connection");
+
 const usersSelect = [
   "users.id as id",
   "users.username as username",

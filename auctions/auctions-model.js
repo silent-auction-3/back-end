@@ -1,4 +1,5 @@
 const DB = require("../database/connection");
+
 const auctionsSelect = [
   "auctions.id as id",
   "users.username as seller_name",
@@ -29,10 +30,10 @@ function remove(id) {
 
 function getAuctionsBySellerId(sellerId) {
   return DB("auctions")
-  .select(...auctionsSelect)
-  .join("auction_categories", "auction_categories.id", "auctions.category_id")
-  .join("users", "users.id", "auctions.seller_id")
-  .where("auctions.seller_id", sellerId);
+    .select(...auctionsSelect)
+    .join("auction_categories", "auction_categories.id", "auctions.category_id")
+    .join("users", "users.id", "auctions.seller_id")
+    .where("auctions.seller_id", sellerId);
 }
 
 module.exports = {
