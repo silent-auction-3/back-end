@@ -10,11 +10,13 @@ const usersSelect = [
 
 function getAll() {
   return DB("users")
+    .select(...usersSelect)
     .join("roles", "users.role_id", "roles.id");
 }
 
 function getById(id) {
   return DB("users")
+    .select(...usersSelect)
     .join("roles", "users.role_id", "roles.id")
     .where("users.id", id).first();
 }
