@@ -1,4 +1,11 @@
 const DB = require("../database/connection");
+const usersSelect = [
+  "users.id as id",
+  "users.username as username",
+  "users.password as password",
+  "roles.id as role_id",
+  "roles.role_name as role_name"
+];
 
 function getAll() {
   return DB("users")
@@ -13,14 +20,9 @@ function getById(id) {
 
 function getByUsername(username) {
   return DB("users")
+    .select(...usersSelect)
     .join("roles", "users.role_id", "roles.id")
     .where("users.username", username).first();
-}
-
-function getAuctionsBySellerId(sellerId) {
-  return DB("auctions")
-    .join("auction_categories", "auction_categories.id", "auctions.category_id")
-    .where("auctions.seller_id", sellerId);
 }
 
 function add(userInfo) {
@@ -31,6 +33,5 @@ module.exports = {
   getAll,
   getById,
   getByUsername,
-  getAuctionsBySellerId,
   add
 };

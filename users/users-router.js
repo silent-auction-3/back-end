@@ -1,5 +1,6 @@
 const usersRouter = require("express").Router();
 const usersModel = require("./users-model");
+const auctionsModel = require("../auctions/auctions-model");
 const { requiresRole } = require("../helpers/roles");
 
 usersRouter.get("/", requiresRole("admin"), async (req, res) => {
@@ -16,7 +17,7 @@ usersRouter.get("/", requiresRole("admin"), async (req, res) => {
 });
 
 usersRouter.get("/auctions", async (req, res) => {
-  const usersAuctions = await usersModel.getAuctionsBySellerId(req.user.id);
+  const usersAuctions = await auctionsModel.getAuctionsBySellerId(req.user.id);
   
   res.status(200).json(usersAuctions);
 });

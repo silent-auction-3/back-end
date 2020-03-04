@@ -2,11 +2,12 @@ exports.up = function(knex) {
   return knex.schema.createTable("auctions", auctionsTable => {
     auctionsTable.increments();
     auctionsTable.integer("seller_id")
+      .notNullable()
       .unsigned()
       .references("id")
       .inTable("users")
       .onUpdate("CASCADE")
-      .onDelete("SET NULL");
+      .onDelete("CASCADE");
     auctionsTable.string("title", 128)
       .notNullable();
     auctionsTable.string("description", 128)
@@ -21,7 +22,11 @@ exports.up = function(knex) {
       .notNullable();
     auctionsTable.integer("num_days")
       .unsigned()
+      .notNullable(),
+    auctionsTable.integer("status")
+      .unsigned()
       .notNullable()
+      .defaultTo(0),
     auctionsTable.timestamp("created_at")
       .defaultTo(knex.fn.now());
   });

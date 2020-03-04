@@ -10,7 +10,7 @@ categoriesRouter.get("/", async (req, res) => {
 
 categoriesRouter.put("/", requiresRole("admin"), async (req, res) => {
   const categoryInfo = req.body;
-  const addResult = await categoriesModel.add(req.params.categoryId);
+  const addResult = await categoriesModel.add(categoryInfo);
   
   res.status(200).json(addResult);
 });
