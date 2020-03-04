@@ -28,6 +28,26 @@ auctionsRouter.post("/", async (req, res) => {
   }
 });
 
+auctionsRouter.put("/", async (req, res) => {
+  const auctionInfo = req.body;
+  const auctionId = auctionInfo.id;
+  const [canProceed, errorMessage, sanitizedAuctionInfo] = await auctionsBR.handleUserEditAuction(req.user.id, auctionInfo);
+
+  if (canProceed) {
+    try {
+      const updateResult = await auctionsModel.update(auctionId, sanitizedAuctionInfo);
+    
+      res.status(200).json(updateResult);
+    }
+    catch(e) {
+      res.status(500).json(e.toString());
+    }
+  }
+  else {
+    res.status(400).json({ errorMessage });
+  }
+});
+
 auctionsRouter.delete("/:auctionId", requiresRole("admin"), async (req, res) => {
   const removeResult = await auctionsModel.remove(req.params.auctionId);
   
