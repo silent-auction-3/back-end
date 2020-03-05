@@ -5,7 +5,8 @@ const listOfAuctions = [
     title: "Ancient Whistle",
     description: "This whistle was used by King Herod to call in his retainers",
     num_days: 3,
-    start_price: 2.50
+    start_price: 2.50,
+    image_url: "https://images.vcoins.com/product_image/238/9/6/9Ta9E7KtNj2f3NpGA65ixX8GCjg45d.jpg"
   },
   {
     seller_id: 2, // Mary
@@ -13,14 +14,11 @@ const listOfAuctions = [
     title: "King size mattress with bed frame",
     description: "The mattress is slightly soiled",
     num_days: 7,
-    start_price: 105.00
+    start_price: 105.00,
+    image_url: "https://www.stayathomemum.com.au/wp-content/uploads/2016/08/vida-de-un-colchon.jpg"
   },
 ];
 
 exports.seed = function(knex) {
-  return knex("auctions")
-    .delete()
-    .then(() => {
-      return knex("auctions").insert(listOfAuctions);
-    });
+  return knex("auctions").insert(listOfAuctions);
 };

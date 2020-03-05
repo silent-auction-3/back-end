@@ -4,9 +4,5 @@ const listOfRoles = [
 ];
 
 exports.seed = function(knex) {
-  return knex("roles")
-    .delete()
-    .then(() => {
-      return knex("roles").insert(listOfRoles);
-    });
+  return knex("roles").insert(listOfRoles);
 };

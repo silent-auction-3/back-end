@@ -50,9 +50,5 @@ const listOfAuctionCategories = [
 ];
 
 exports.seed = function(knex) {
-  return knex("auction_categories")
-    .delete()
-    .then(() => {
-      return knex("auction_categories").insert(listOfAuctionCategories);
-    });
+  return knex("auction_categories").insert(listOfAuctionCategories);
 };

@@ -12,9 +12,5 @@ const listOfUsers = [
 ];
 
 exports.seed = function(knex) {
-  return knex("users")
-    .delete()
-    .then(() => {
-      return knex("users").insert(listOfUsers);
-    });
+  return knex("users").insert(listOfUsers);
 };
