@@ -4,6 +4,10 @@ const usersSelect = [
   "users.id as id",
   "users.username as username",
   "users.password as password",
+  "users.full_name as full_name",
+  "users.email as email",
+  "users.address as address",
+  "users.phone_number as phone_number",
   "roles.id as role_id",
   "roles.role_name as role_name"
 ];

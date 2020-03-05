@@ -17,6 +17,14 @@ usersRouter.get("/", requiresRole("admin"), async (req, res) => {
   res.status(200).json(cleanedUpAllUsers);
 });
 
+usersRouter.get("/profile", async (req, res) => {
+  const userInfo = await usersModel.getById(req.user.id);
+
+  userInfo.password = "********";
+  
+  res.status(200).json(userInfo);
+});
+
 usersRouter.get("/auctions", async (req, res) => {
   const userAuctions = await auctionsModel.getAuctionsBySellerId(req.user.id);
   
