@@ -4,7 +4,7 @@
   "description": "silent-auction backend",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB_ENV=testing jest --watch",
+    "test": "jest --watch --verbose",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
@@ -25,11 +25,15 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.3",
+    "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.10",
     "pg": "^7.18.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
+  },
+  "jest": {
+    "testEnvirnoment": "node"
   }
 }
