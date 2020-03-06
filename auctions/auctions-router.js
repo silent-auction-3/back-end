@@ -48,10 +48,15 @@ auctionsRouter.put("/", async (req, res) => {
   }
 });
 
-auctionsRouter.delete("/:auctionId", requiresRole("admin"), async (req, res) => {
-  const removeResult = await auctionsModel.remove(req.params.auctionId);
-  
-  res.status(200).json(removeResult);
+auctionsRouter.delete("/:auctionId", async (req, res) => {
+  try {
+    const removeResult = await auctionsModel.remove(req.params.auctionId);
+
+    res.status(200).json(removeResult);
+  }
+  catch (e) {
+    res.status(500).json(e.toString());
+  }
 });
 
 module.exports = auctionsRouter;

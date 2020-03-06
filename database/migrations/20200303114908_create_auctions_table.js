@@ -17,7 +17,8 @@ exports.up = function(knex) {
       .references("id")
       .inTable("auction_categories")
       .onUpdate("CASCADE")
-      .onDelete("SET NULL");
+      .onDelete("SET NULL")
+      .notNullable();
     auctionsTable.decimal("start_price")
       .notNullable();
     auctionsTable.integer("num_days")
